@@ -1,0 +1,7 @@
+footer {
+    height: 10%;
+    position: relative;
+    bottom: 10px;
+    text-align: center;
+    background-color: aqua;
+}
