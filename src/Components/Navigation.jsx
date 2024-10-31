@@ -4,13 +4,48 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 export default function Navigation(props) {
   return (
     <>
-      <ul className="navLink">
-        <li> <Link to="/"  >Home   </Link></li>
-        <li> <Link to="/about"  >About   </Link></li>
-        <li> <Link to="/doctor"  >Doctor  </Link></li>
-        <li> <Link to="/patient"  > Patients   </Link></li>
-        <li> <Link to="/appointment"  >Appointment   </Link></li>
-      </ul>
+      <div className="nav-bar">
+        <div className="nav-left">
+          <ul className="nav-ul">
+            <li className="nav-li">
+              <Link to="/" className="nav-link" style={{ border: 5 }}>
+                Home{" "}
+              </Link>
+            </li>
+            <li className="nav-li">
+              <Link to="/about" className="nav-link">
+                About{" "}
+              </Link>
+            </li>
+            <li className="nav-li">
+              <Link to="/doctor" className="nav-link">
+                Doctor{" "}
+              </Link>
+            </li>
+            <li className="nav-li">
+              <Link to="/patient" className="nav-link">
+                {" "}
+                Patients{" "}
+              </Link>
+            </li>
+            <li className="nav-li">
+              <Link to="/appointment" className="nav-link">
+                Appointment{" "}
+              </Link>
+            </li>
+            <li className="nav-li">
+              <Link to="/systemadmin" className="nav-link">
+                System Admin
+              </Link>
+            </li>
+            <div id="nav-right">
+              <button className="nav-button">Login</button>
+              <button className="nav-button">Register</button>
+            </div>
+          </ul>
+         
+        </div>
+      </div>
     </>
   );
 }

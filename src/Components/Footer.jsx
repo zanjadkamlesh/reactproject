@@ -1,11 +1,11 @@
-import "../Style/Footer.css"
+import "../Style/Layout.css"
 function Footer(props) {
   return (
     <>
       <footer>
-        <h2>Contact Morya Hospital at</h2>
-        <h3>Email: Morya@Hospital.com</h3>
-        <h3>Phone: 1234567890</h3>
+        <h5>Contact Morya Hospital at</h5>
+        <h6>Email: Morya@Hospital.com</h6>
+        <h6>Phone: 1234567890</h6>
       </footer>
     </>
   );

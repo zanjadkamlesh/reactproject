@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import "../Style/Header.css"
+import "../Style/Layout.css"
 
 function Header(props){
 

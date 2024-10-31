@@ -6,12 +6,22 @@ import './index.css';
 import App from "./Components/AppHospital"
 
 import reportWebVitals from './reportWebVitals';
+// import { reducerFunction } from "./Components/Reducer";
+import store  from "./Components/Reducer1"
+// import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+
+
+// const store = configureStore({ reducer: reducerFunction });
+// console.log("store: ", store)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <Provider store={store}>
   <React.StrictMode>
     <App />
   </React.StrictMode>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

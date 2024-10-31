@@ -1,0 +1,18 @@
+
+.section-class{
+    display: flex;
+    direction: column;
+    /* border: 1px solid red; */
+}
+
+.sub-menu{
+    border: 1px solid red;
+}
+
+.search-section{
+    border: 1px solid red;
+}
+
+.main-section{
+    border: 1px solid red;
+}

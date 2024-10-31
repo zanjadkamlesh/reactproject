@@ -1,33 +1,104 @@
-.navLink {
-  color: red;
-  background-color: cornflowerblue;
-  display: flex;
-  height: 10%;
-}
-
-ul {
-  margin-right: 10px;
-  padding: auto;
-  list-style-type: none;
+header {
   text-align: center;
+  vertical-align: middle;
+  background-color: aqua;
+
+  /* position:fixed; */
+  /* top:0; */
+  width:100%;
+  /* height: 10%; */
 }
 
-li {
-  border: 2px solid red;
+footer {
+  text-align: center;
+  background-color: aqua;
+  vertical-align: middle;
+  position:fixed;
+  bottom:0;
+  width:100%;
+  height: 10%
+}
+
+.nav-bar{
+  /* display: inline; */
+  width: 100%;
+  /* height: 5%; */
+  /* color: red;
+  background-color: cornflowerblue; */
+  margin: 0;
+  padding: 0;
+  border: 1px solid red;
+  /* display: inline-flex; */
+
+  background-color:cadetblue;
+    overflow: hidden;
+  
+}
+.nav-left1 {
+  float:left;
+  /* padding: 14px 16px; */
+  text-decoration: none;
+  font-size: 17px;
+}
+.nav-right {
+  float:right;
+  /* padding: 14px 16px; */
+  font-size: 17px;
+  text-decoration: none;
+}
+
+
+.nav-ul {
+  display: flex;
+  
+  /* height: 10%; */
+  /* top:10%; */
+  width:100%;
+  list-style-type: none;
+  /* margin-right: 10px; */
+  /* text-align: center; */
+
+  /* overflow: hidden; */
+  /* background-color: #333; */
+}
+
+.nav-li {
+  /* border: 2px solid red; */
   margin-left: 20px;
+  /* padding: 5px; */
+  /* background-color: blue; */
+  /* color: green */
 }
 
-Link {
-  border: 10px;
+.nav-link {
+  /* border: 10px;
+   */
+   /* border: 2px solid red; */
+   /* margin-left: 20px; */
+   /* background-color: blue; */
+   color: blue;
+   float:left;
+
+   /* padding: 14px 16px; */
+   /* text-decoration: none; */
+   /* font-size: 17px; */
 }
 
+.nav-button {
+  color: red;
+  float: right;
+  margin-left: 20px;
+  background-color: rgb(193, 193, 212);
+  /* margin-right: 20px; */
+  /* border: 2px solid rgb(133, 45, 45); */
+
+}
 
 section {
-    height :80%;
-    border-top: 20%;
+  height: 70%;
+  /* border-top: 20%; */
 }
 
-
 td {
-    border: 1px solid blue;
+  border: 1px solid blue;
 }
