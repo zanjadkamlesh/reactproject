@@ -1,5 +1,5 @@
 import "../Style/Layout.css";
-import { deActivateDoctor , updateDoctor} from "./Reducer1";
+import { deActivateDoctor, updateDoctor,createDoctor } from "./ReducerFunctions";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Modal from "react-modal";
@@ -7,18 +7,18 @@ import Modal from "react-modal";
 export function Doctor(props) {
   const inputs = useSelector((state) => state.hospital.doctors);
   const dispatch = useDispatch();
-
-  const [modelInputs, setModelInputs] = useState({
+  const iniValues = {
     id: "",
     name: "",
     dept: "",
     tel: "",
     isModalOpen: false,
-  });
+  };
+
+  const [modelInputs, setModelInputs] = useState(iniValues);
 
   const openModal = (ele, event) => {
     event.stopPropagation();
-    // setModelInputs(true);
     setModelInputs({
       id: ele.id,
       name: ele.name,
@@ -31,14 +31,22 @@ export function Doctor(props) {
   const closeModal = (event) => {
     event.stopPropagation();
     setModelInputs((values) => ({ ...values, isModalOpen: false }));
-    // setIsModalOpen(false);
   };
 
   return (
     <section>
-      <h2> Doctor Page</h2>
+      <div style={{ display: "inline" }}>
+        <h2> Doctor Page</h2>
+        <span
+          onClick={(event) => openModal(iniValues, event)}
+          style={{ float: "right" }}
+        >
+          Add New Doctor
+        </span>
+      </div>
 
       <form id="formDoctor">
+      
         <table id="tableDoctor">
           <thead>
             <tr>
@@ -69,8 +77,6 @@ export function Doctor(props) {
                       <span onClick={(event) => openModal(ele, event)}>
                         Update
                       </span>
-                      {/* <button onClick={() => dispatch(deActivateDoctor({payload:{id:ele.id}}))}> */}
-                      {/* <button onClick={() => dispatch(actionRemoveDoctor2)}> */}
                       <button
                         onClick={() => dispatch(deActivateDoctor(ele.id))}
                       >
@@ -83,8 +89,6 @@ export function Doctor(props) {
           </tbody>
         </table>
       </form>
-
-      {/* <p>{JSON.stringify(inputs)}</p> */}
 
       <ModelUpdateDoctor
         doctorList={inputs}
@@ -99,7 +103,8 @@ export function Doctor(props) {
 }
 
 function ModelUpdateDoctor(props) {
-  const { doctorList, closeModal, modelInputs, setModelInputs, dispatch } = props;
+  const { doctorList, closeModal, modelInputs, setModelInputs, dispatch } =
+    props;
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
@@ -109,8 +114,7 @@ function ModelUpdateDoctor(props) {
 
   const handleUpdate = (values, event) => {
     // alert("to be Updated: " + JSON.stringify(values));
-    setErrors({
-    });
+    setErrors({});
     const { id, name } = values;
     let isDuplicate = false;
     // const error =null;
@@ -119,7 +123,7 @@ function ModelUpdateDoctor(props) {
       if (ele.id !== id) {
         if (ele.name === name) {
           // alert(ele.id + "   " + values.id);
-          isDuplicate= true
+          isDuplicate = true;
           setErrors({
             statusCode: 400,
             message: "Doctor Name is already present",
@@ -127,15 +131,39 @@ function ModelUpdateDoctor(props) {
         }
       }
     });
-    if( !isDuplicate){
+    if (!isDuplicate) {
       setErrors({
         statusCode: 200,
         message: "Doctor Name is Updated",
       });
-      const {isModalOpen , ...rest} = values
-      dispatch(updateDoctor({...rest, isActive:true}))
+      const { isModalOpen, ...rest } = values;
+      dispatch(updateDoctor({ ...rest, isActive: true }));
     }
     // alert(JSON.stringify(errors));
+  };
+
+  const handleCreate = (values, event) => {
+    setErrors({});
+    const { id, name } = values;
+    let isDuplicate = false;
+    doctorList.data.forEach((ele) => {
+        if (ele.name === name) {
+          isDuplicate = true;
+          setErrors({
+            statusCode: 400,
+            message: "Doctor Name is already present",
+          });
+        }
+      
+    });
+    if (!isDuplicate) {
+      setErrors({
+        statusCode: 200,
+        message: "Doctor Name is Updated",
+      });
+      const { isModalOpen, ...rest } = values;
+      dispatch(createDoctor({ ...rest, isActive: true }));
+    }
   };
 
   return (
@@ -159,7 +187,12 @@ function ModelUpdateDoctor(props) {
         className="modal-header"
         style={{ display: "flex", justifyContent: "space-between" }}
       >
-        <h1>Update Doctor's Details </h1>
+        {modelInputs.id =="" && (
+          <h1>New Doctor's Details </h1>
+        )}
+        {modelInputs.id !="" && (
+          <h1>Update Doctor's Details </h1>
+        )}
         <button
           onClick={(event) => closeModal(event)}
           style={{ width: "90px", height: "20px", margin: "auto 0" }}
@@ -168,7 +201,7 @@ function ModelUpdateDoctor(props) {
         </button>
       </div>
       <div>
-        <label>Name</label>
+        <label>Name:     </label>
         <input
           id="name"
           name="name"
@@ -177,7 +210,7 @@ function ModelUpdateDoctor(props) {
         />
       </div>
       <div>
-        <label>Department</label>
+        <label>Department:   </label>
         <input
           id="dept"
           name="dept"
@@ -186,7 +219,7 @@ function ModelUpdateDoctor(props) {
         />
       </div>
       <div>
-        <label>Contact Number</label>
+        <label>Contact Number:   </label>
         <input
           id="tel"
           name="tel"
@@ -194,13 +227,25 @@ function ModelUpdateDoctor(props) {
           onChange={(event) => handleChange(event)}
         />
       </div>
-      <button
-        // onClick={() => alert( modelInputs.id + " " +  modelInputs.name )}
+      {modelInputs.id === "" && (
+        <button
+          onClick={(event) => handleCreate(modelInputs, event)}
+          style={{ width: "90px", margin: "10px auto 0 auto" }}
+        >
+          Create New Doctor
+        </button>
+      )}
+      { modelInputs.id !=="" && (
+        <button
         onClick={(event) => handleUpdate(modelInputs, event)}
         style={{ width: "90px", margin: "10px auto 0 auto" }}
       >
         Update
       </button>
+      )
+
+      }
+     
       {errors.statusCode && <p6> {JSON.stringify(errors)}</p6>}
     </Modal>
   );

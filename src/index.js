@@ -7,7 +7,7 @@ import App from "./Components/AppHospital"
 
 import reportWebVitals from './reportWebVitals';
 // import { reducerFunction } from "./Components/Reducer";
-import store  from "./Components/Reducer1"
+import store  from "./Components/ReducerFunctions"
 // import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 
