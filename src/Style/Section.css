@@ -2,6 +2,7 @@
 .section-class{
     display: flex;
     direction: column;
+    margin-top: 2%;
     /* border: 1px solid red; */
 }
 
@@ -15,4 +16,8 @@
 
 .main-section{
     border: 1px solid red;
+}
+
+ul{
+    list-style-type: none;
 }

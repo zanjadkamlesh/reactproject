@@ -38,10 +38,25 @@ export default function Navigation(props) {
                 System Admin
               </Link>
             </li>
-            <div id="nav-right">
+            <li className="nav-li">
+              <Link to="/dashboard" className="nav-link">
+                Dashboard
+              </Link>
+            </li>
+            <li className="nav-li">
+              <Link to="/login" className="nav-link">
+                Login
+              </Link>
+            </li>
+            <li className="nav-li">
+              <Link to="/register" className="nav-link">
+               Register
+              </Link>
+            </li>
+            {/* <div id="nav-right">
               <button className="nav-button">Login</button>
               <button className="nav-button">Register</button>
-            </div>
+            </div> */}
           </ul>
          
         </div>

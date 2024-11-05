@@ -1,5 +1,9 @@
 import "../Style/Layout.css";
-import { deActivatePatient, updatePatient,createPatient } from "./ReducerFunctions";
+import {
+  deActivatePatient,
+  updatePatient,
+  createPatient,
+} from "./ReducerFunctions";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
@@ -35,17 +39,27 @@ export function Patient(props) {
   return (
     <section>
       <div style={{ display: "inline" }}>
-        <h2> Patients Page</h2>
-        <span
-          onClick={(event) => openModal(iniValues, event)}
-          style={{ float: "right", color:"blue", margin: 35, "border-spacing": 5, "border-color": "black"}}
-        >
-          Add New Patient
-        </span>
+        <h2>
+          {" "}
+          Patients Page
+          <span
+            onClick={(event) => openModal(iniValues, event)}
+            style={{
+              float: "right",
+              color: "blue",
+              "margin-right": 600,
+              "border-spacing": 5,
+              "border-color": "black",
+              border: "1px solid red",
+              "background-color": "cyan",
+            }}
+          >
+            Add New Patient
+          </span>
+        </h2>
       </div>
 
       <form id="formPatient">
-      
         <table id="tablePatient">
           <thead>
             <tr>
@@ -68,7 +82,10 @@ export function Patient(props) {
                     </td>
                     <td>
                       {" "}
-                      <span onClick={(event) => openModal(ele, event)} style={{color:"blue"}}>
+                      <span
+                        onClick={(event) => openModal(ele, event)}
+                        style={{ color: "blue" }}
+                      >
                         Update
                       </span>
                       <button
@@ -136,14 +153,13 @@ function ModelupdatePatient(props) {
     const { id, name } = values;
     let isDuplicate = false;
     patientList.data.forEach((ele) => {
-        if (ele.name === name) {
-          isDuplicate = true;
-          setErrors({
-            statusCode: 400,
-            message: "Patient Name is already present.",
-          });
-        }
-      
+      if (ele.name === name) {
+        isDuplicate = true;
+        setErrors({
+          statusCode: 400,
+          message: "Patient Name is already present.",
+        });
+      }
     });
     if (!isDuplicate) {
       setErrors({
@@ -176,31 +192,36 @@ function ModelupdatePatient(props) {
         className="modal-header"
         style={{ display: "flex", justifyContent: "space-between" }}
       >
-        {modelInputs.id =="" && (
-          <h1>New Patient's Details </h1>
-        )}
-        {modelInputs.id !="" && (
-          <h1>Update Patient's Details </h1>
-        )}
+        {modelInputs.id === "" && <h1>New Patient's Details </h1>}
+        {modelInputs.id !== "" && <h1>Update Patient's Details </h1>}
         <button
           onClick={(event) => closeModal(event)}
-          style={{ width: "90px", height: "20px", margin: "auto 0" }}
+          style={{
+            width: "90px",
+            height: "20px",
+            margin: "auto 0",
+            "border-spacing": 5,
+            "border-color": "black",
+            border: "1px solid red",
+            "background-color": "cyan",
+          }}
         >
           Close
         </button>
       </div>
       <div>
-        <label>Name:     </label>
+        <label>Name: </label>
         <input
           id="name"
           name="name"
           value={modelInputs.name}
           onChange={(event) => handleChange(event)}
+          required={true}
         />
       </div>
-      
+
       <div>
-        <label>Contact Number:   </label>
+        <label>Contact Number: </label>
         <input
           id="tel"
           name="tel"
@@ -211,22 +232,33 @@ function ModelupdatePatient(props) {
       {modelInputs.id === "" && (
         <button
           onClick={(event) => handleCreate(modelInputs, event)}
-          style={{ width: "90px", margin: "10px auto 0 auto" }}
+          style={{
+            width: "200px",
+            margin: "10px auto 0 auto",
+            "border-color": "black",
+            border: "1px solid red",
+            "background-color": "cyan",
+          }}
         >
           Create New Patient
         </button>
       )}
-      { modelInputs.id !=="" && (
+      {modelInputs.id !== "" && (
         <button
-        onClick={(event) => handleUpdate(modelInputs, event)}
-        style={{ width: "90px", margin: "10px auto 0 auto" }}
-      >
-        Update
-      </button>
-      )
+          onClick={(event) => handleUpdate(modelInputs, event)}
+          style={{
+            width: "200px",
+            margin: "10px auto 0 auto",
+            "border-spacing": 5,
+            "border-color": "black",
+            border: "1px solid red",
+            "background-color": "cyan",
+          }}
+        >
+          Update
+        </button>
+      )}
 
-      }
-     
       {errors.statusCode && <p6> {JSON.stringify(errors)}</p6>}
     </Modal>
   );

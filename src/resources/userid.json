@@ -1,0 +1,9 @@
+[
+  { "userId": "test1@test.com", "pwd": "Test1" },
+  { "userId": "user1@test.com", "pwd": "password1" },
+  { "userId": "user2@test.com", "pwd": "t12345" },
+  { "userId": "user1@example.com", "pwd": "Test1" },
+  { "userId": "user2@example.com", "pwd": "Test2" },
+  { "userId": "user3@example.com", "pwd": "Test3" },
+  { "userId": "user4@example.com", "pwd": "Test4" }
+]

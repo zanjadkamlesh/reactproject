@@ -1,0 +1,60 @@
+.footer {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  width: 100%;
+  flex-direction: row;
+}
+
+.sidebar {
+  left: 0%;
+  position: absolute;
+  width: 10%;
+  flex-direction: column;
+  border-color: aqua;
+  
+}
+.middlebar {
+  border-color: black;
+  left: 10%;
+  position: absolute;
+  width: 10%;
+  flex-direction: column;
+  border: black;
+}
+
+.rightsidebar {
+  left: 20%;
+  position: absolute;
+  width: 80%;
+  flex-direction: column;
+}
+
+.error {
+  color: red;
+  background-color: black;
+}
+
+.divClas {
+}
+
+.linkclass {
+  padding-left: 20pt;
+  padding-right: 20pt;
+}
+a:link {
+  background-color: yellow;
+}
+
+a:visited {
+  background-color: cyan;
+}
+
+a:hover {
+  background-color: lightgreen;
+}
+
+a:active {
+  background-color: hotpink;
+}
