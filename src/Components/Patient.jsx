@@ -1,16 +1,16 @@
 import "../Style/Layout.css";
-import { deActivateDoctor, updateDoctor,createDoctor } from "./ReducerFunctions";
+import { deActivatePatient, updatePatient,createPatient } from "./ReducerFunctions";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Modal from "react-modal";
 
-export function Doctor(props) {
-  const inputs = useSelector((state) => state.hospital.doctors);
+export function Patient(props) {
+  const inputs = useSelector((state) => state.hospital.patients);
   const dispatch = useDispatch();
   const iniValues = {
     id: "",
     name: "",
-    dept: "",
     tel: "",
     isModalOpen: false,
   };
@@ -22,7 +22,6 @@ export function Doctor(props) {
     setModelInputs({
       id: ele.id,
       name: ele.name,
-      dept: ele.dept,
       tel: ele.tel,
       isModalOpen: true,
     });
@@ -36,22 +35,21 @@ export function Doctor(props) {
   return (
     <section>
       <div style={{ display: "inline" }}>
-        <h2> Doctor Page</h2>
+        <h2> Patients Page</h2>
         <span
           onClick={(event) => openModal(iniValues, event)}
           style={{ float: "right", color:"blue", margin: 35, "border-spacing": 5, "border-color": "black"}}
         >
-          Add New Doctor
+          Add New Patient
         </span>
       </div>
 
-      <form id="formDoctor">
+      <form id="formPatient">
       
-        <table id="tableDoctor">
+        <table id="tablePatient">
           <thead>
             <tr>
-              <th>Doctor Name</th>
-              <th>Department</th>
+              <th>Patient Name</th>
               <th>Contact Number</th>
               <th>Action</th>
             </tr>
@@ -66,10 +64,6 @@ export function Doctor(props) {
                       <input name="name" value={ele.name} readOnly />{" "}
                     </td>
                     <td>
-                      {" "}
-                      <input name="dept" value={ele.dept} readOnly />{" "}
-                    </td>
-                    <td>
                       <input name="tel" value={ele.tel} readOnly />{" "}
                     </td>
                     <td>
@@ -78,7 +72,7 @@ export function Doctor(props) {
                         Update
                       </span>
                       <button
-                        onClick={() => dispatch(deActivateDoctor(ele.id))}
+                        onClick={() => dispatch(deActivatePatient(ele.id))}
                       >
                         DeActivate
                       </button>
@@ -90,8 +84,8 @@ export function Doctor(props) {
         </table>
       </form>
 
-      <ModelUpdateDoctor
-        doctorList={inputs}
+      <ModelupdatePatient
+        patientList={inputs}
         openModal={openModal}
         closeModal={closeModal}
         modelInputs={modelInputs}
@@ -102,8 +96,8 @@ export function Doctor(props) {
   );
 }
 
-function ModelUpdateDoctor(props) {
-  const { doctorList, closeModal, modelInputs, setModelInputs, dispatch } =
+function ModelupdatePatient(props) {
+  const { patientList, closeModal, modelInputs, setModelInputs, dispatch } =
     props;
   const [errors, setErrors] = useState({});
 
@@ -116,13 +110,13 @@ function ModelUpdateDoctor(props) {
     setErrors({});
     const { id, name } = values;
     let isDuplicate = false;
-    doctorList.data.forEach((ele) => {
+    patientList.data.forEach((ele) => {
       if (ele.id !== id) {
         if (ele.name === name) {
           isDuplicate = true;
           setErrors({
             statusCode: 400,
-            message: "Doctor Name is already present",
+            message: "Patient Name is already present.",
           });
         }
       }
@@ -130,10 +124,10 @@ function ModelUpdateDoctor(props) {
     if (!isDuplicate) {
       setErrors({
         statusCode: 200,
-        message: "Doctor Name is Updated",
+        message: "Patient Name is Updated.",
       });
       const { isModalOpen, ...rest } = values;
-      dispatch(updateDoctor({ ...rest, isActive: true }));
+      dispatch(updatePatient({ ...rest, isActive: true }));
     }
   };
 
@@ -141,12 +135,12 @@ function ModelUpdateDoctor(props) {
     setErrors({});
     const { id, name } = values;
     let isDuplicate = false;
-    doctorList.data.forEach((ele) => {
+    patientList.data.forEach((ele) => {
         if (ele.name === name) {
           isDuplicate = true;
           setErrors({
             statusCode: 400,
-            message: "Doctor Name is already present",
+            message: "Patient Name is already present.",
           });
         }
       
@@ -154,10 +148,10 @@ function ModelUpdateDoctor(props) {
     if (!isDuplicate) {
       setErrors({
         statusCode: 200,
-        message: "Doctor Name is Updated",
+        message: "Patient Name is Updated.",
       });
       const { isModalOpen, ...rest } = values;
-      dispatch(createDoctor({ ...rest, isActive: true }));
+      dispatch(createPatient({ ...rest, isActive: true }));
     }
   };
 
@@ -183,10 +177,10 @@ function ModelUpdateDoctor(props) {
         style={{ display: "flex", justifyContent: "space-between" }}
       >
         {modelInputs.id =="" && (
-          <h1>New Doctor's Details </h1>
+          <h1>New Patient's Details </h1>
         )}
         {modelInputs.id !="" && (
-          <h1>Update Doctor's Details </h1>
+          <h1>Update Patient's Details </h1>
         )}
         <button
           onClick={(event) => closeModal(event)}
@@ -204,15 +198,7 @@ function ModelUpdateDoctor(props) {
           onChange={(event) => handleChange(event)}
         />
       </div>
-      <div>
-        <label>Department:   </label>
-        <input
-          id="dept"
-          name="dept"
-          value={modelInputs.dept}
-          onChange={(event) => handleChange(event)}
-        />
-      </div>
+      
       <div>
         <label>Contact Number:   </label>
         <input
@@ -227,7 +213,7 @@ function ModelUpdateDoctor(props) {
           onClick={(event) => handleCreate(modelInputs, event)}
           style={{ width: "90px", margin: "10px auto 0 auto" }}
         >
-          Create New Doctor
+          Create New Patient
         </button>
       )}
       { modelInputs.id !=="" && (

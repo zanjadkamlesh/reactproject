@@ -56,9 +56,9 @@ const initialState = {
   },
   patients: {
     data: [
-      { id: "p01", name: "Patient 1", tel: "8123456791" },
-      { id: "p02", name: "Patient 2", tel: "8123456792" },
-      { id: "p03", name: "Patient 3", tel: "8123456793" },
+      { id: "p01", name: "Patient 1", tel: "8123456791" ,isActive: true,},
+      { id: "p02", name: "Patient 2", tel: "8123456792", isActive: true, },
+      { id: "p03", name: "Patient 3", tel: "8123456793",isActive: true, },
     ],
 
     loading: false,
@@ -114,28 +114,43 @@ const hospitalSlice = createSlice({
     },
     updateDoctor(state, action) {
       const id = action.payload.id;
-     
       state.doctors.data.forEach((element, index) => {
         if (element.id === id) {
           state.doctors.data.splice(index, 1, action.payload)
-          alert(JSON.stringify(state))
-
         }
       });
     },
     createDoctor(state, action) {
       const id = uuidv4();
-      state.doctors.data.push( { ...action.payload , id:id} )
-      alert(JSON.stringify(state))
+      state.doctors.data.push({ ...action.payload, id: id })
+    },
 
-      
+    deActivatePatient(state, action) {
+      const id = action.payload;
+      state.patients.data.forEach((element) => {
+        if (element.id === id) {
+          element.isActive = false;
+        }
+      });
+    },
+    updatePatient(state, action) {
+      const id = action.payload.id;
+      state.patients.data.forEach((element, index) => {
+        if (element.id === id) {
+          state.patients.data.splice(index, 1, action.payload)
+        }
+      });
+    },
+    createPatient(state, action) {
+      const id = uuidv4();
+      state.patients.data.push({ ...action.payload, id: id })
     },
   },
 });
 
 
 
-export const { deActivateDoctor, updateDoctor, createDoctor } = hospitalSlice.actions;
+export const { deActivateDoctor, updateDoctor, createDoctor, deActivatePatient, updatePatient, createPatient } = hospitalSlice.actions;
 
 const store = configureStore({
   reducer: {

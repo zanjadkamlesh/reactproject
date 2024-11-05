@@ -4,7 +4,7 @@ import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { Home, About } from "./Home";
 import { Doctor } from "./Doctor";
-// import { Patient } from "./Patient";
+import { Patient } from "./Patient";
 // import { Appointment } from "./Home copy";
 import SystemAdmin from "./SystemAdmin";
 
@@ -26,7 +26,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/doctor" element={<Doctor />} />
-            {/* <Route path="/patient" element={<Patient />} /> */}
+            <Route path="/patient" element={<Patient />} />
             {/* <Route path="/appointment" element={<Appointment />} /> */}
             <Route path="/systemadmin" element={<SystemAdmin />} />
           </Routes>
